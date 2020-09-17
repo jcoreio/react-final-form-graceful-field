@@ -24,6 +24,10 @@ the field is active or `parse` threw an error. That's right, `parse` can throw a
 This way you can successfully type in `5.23`, whereas a naive `parse={parseFloat}` approach will kill the `.` before you can type anything
 after it.
 
+# Try it out!
+
+Demo CodeSandbox: https://codesandbox.io/s/react-final-form-graceful-field-example-n1onw?file=/src/index.js
+
 # Important
 
 **Important**: `react-final-form-graceful-field` requires you to use the [`setFieldData` mutator](https://github.com/final-form/final-form-set-field-data) on your form:
