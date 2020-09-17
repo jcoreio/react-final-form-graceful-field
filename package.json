@@ -1,9 +1,15 @@
 {
-  "name": "react-library-skeleton",
+  "name": "react-final-form-graceful-field",
   "version": "0.0.0-development",
-  "description": "my personal skeleton for React library NPM packages",
+  "description": "parse and format that work how you actually want them to for react-final-form",
   "main": "index.js",
   "sideEffects": false,
+  "files": [
+    "GracefulField.js",
+    "index.js",
+    "useGracefulField.js",
+    "*.d.ts"
+  ],
   "scripts": {
     "lint": "eslint src test --cache",
     "lint:fix": "eslint --fix src test --cache",
@@ -66,19 +72,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jedwards1211/react-library-skeleton.git"
+    "url": "https://github.com/jcoreio/react-final-form-graceful-field.git"
   },
   "keywords": [
-    "es2015",
-    "react",
-    "skeleton"
+    "final-form",
+    "react-final-form"
   ],
   "author": "Andy Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedwards1211/react-library-skeleton/issues"
+    "url": "https://github.com/jcoreio/react-final-form-graceful-field/issues"
   },
-  "homepage": "https://github.com/jedwards1211/react-library-skeleton#readme",
+  "homepage": "https://github.com/jcoreio/react-final-form-graceful-field#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
@@ -86,6 +91,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
@@ -99,6 +105,7 @@
     "@jedwards1211/eslint-config-flow": "^2.0.0",
     "@jedwards1211/eslint-config-react": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.1.0",
     "babel-plugin-flow-react-proptypes": "^24.1.2",
     "babel-plugin-istanbul": "^5.1.0",
     "chai": "^4.2.0",
@@ -112,6 +119,7 @@
     "eslint-plugin-flowtype": "^3.2.0",
     "eslint-plugin-react": "^7.11.1",
     "eslint-watch": "^4.0.2",
+    "final-form": "^4.20.1",
     "flow-bin": "^0.92.0",
     "flow-copy-source": "^2.0.2",
     "flow-watch": "^1.1.4",
@@ -124,13 +132,21 @@
     "nyc": "^13.1.0",
     "prettier": "^1.15.2",
     "prettier-eslint": "^8.8.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-error-boundary": "^3.0.2",
+    "react-final-form": "^6.5.1",
     "rimraf": "^2.6.0",
-    "semantic-release": "^15.1.4"
+    "semantic-release": "^15.1.4",
+    "typescript": "^4.0.2",
+    "waait": "^1.0.5",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
+    "final-form-set-field-data": "^1.0.2",
     "prop-types": "^15.0.0"
   },
   "peerDependencies": {
