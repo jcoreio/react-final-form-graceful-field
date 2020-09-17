@@ -109,7 +109,7 @@
     "babel-plugin-flow-react-proptypes": "^24.1.2",
     "babel-plugin-istanbul": "^5.1.0",
     "chai": "^4.2.0",
-    "codecov": "^3.1.0",
+    "codecov": "^3.7.2",
     "copy": "^0.3.2",
     "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
@@ -150,10 +150,10 @@
     "prop-types": "^15.0.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
     "final-form": "^4.20.0",
-    "react-final-form": "^6.5.0",
-    "final-form-set-field-data": "^1.0.2"
+    "final-form-set-field-data": "^1.0.2",
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
+    "react-final-form": "^6.5.0"
   },
   "renovate": {
     "extends": [
