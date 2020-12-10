@@ -7,6 +7,7 @@ import {
 } from 'final-form'
 import { useForm, type FieldRenderProps, useField } from 'react-final-form'
 import * as React from 'react'
+import get from 'lodash/get'
 
 export type UseGracefulFieldProps = {
   afterSubmit?: () => void,
@@ -115,7 +116,7 @@ export default function useGracefulField(
   })
 
   const raw = getRaw(field.meta)
-  const curValue = form.getState().values?.[name]
+  const curValue = get(form.getState().values, name)
   React.useEffect(
     () => {
       if (

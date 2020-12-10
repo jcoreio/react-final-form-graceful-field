@@ -115,6 +115,36 @@ describe(`GracefulField`, function() {
     expect(props.values.test).to.equal(23.5)
     expect(comp.find('input').prop('value')).to.equal(23.5)
   })
+  it(`on blur without format -- nested name`, async function() {
+    let props
+    const comp = mount(
+      <Form mutators={mutators} onSubmit={() => {}}>
+        {p => {
+          props = p
+          return (
+            <GracefulField name="test.foo" component="input" parse={parse} />
+          )
+        }}
+      </Form>
+    )
+    await delay(0)
+    comp.update()
+
+    comp.find('input').simulate('focus')
+    await delay(0)
+    comp.update()
+
+    comp.find('input').simulate('change', { target: { value: '  23.5 ' } })
+    await delay(0)
+    comp.update()
+
+    comp.find('input').simulate('blur')
+    await delay(0)
+    comp.update()
+
+    expect(props.values.test?.foo).to.equal(23.5)
+    expect(comp.find('input').prop('value')).to.equal(23.5)
+  })
   it(`leaves raw value on blur if invalid`, async function() {
     let props
     const comp = mount(
@@ -148,6 +178,41 @@ describe(`GracefulField`, function() {
     comp.update()
 
     expect(props.values.test).to.equal(undefined)
+    expect(comp.find('input').prop('value')).to.equal('  23.5b ')
+  })
+  it(`leaves raw value on blur if invalid - nested name`, async function() {
+    let props
+    const comp = mount(
+      <Form mutators={mutators} onSubmit={() => {}}>
+        {p => {
+          props = p
+          return (
+            <GracefulField
+              name="test.foo"
+              component="input"
+              format={format}
+              parse={parse}
+            />
+          )
+        }}
+      </Form>
+    )
+    await delay(0)
+    comp.update()
+
+    comp.find('input').simulate('focus')
+    await delay(0)
+    comp.update()
+
+    comp.find('input').simulate('change', { target: { value: '  23.5b ' } })
+    await delay(0)
+    comp.update()
+
+    comp.find('input').simulate('blur')
+    await delay(0)
+    comp.update()
+
+    expect(props.values.test?.foo).to.equal(undefined)
     expect(comp.find('input').prop('value')).to.equal('  23.5b ')
   })
 

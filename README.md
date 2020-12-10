@@ -28,6 +28,10 @@ after it.
 
 Demo CodeSandbox: https://codesandbox.io/s/react-final-form-graceful-field-example-n1onw?file=/src/index.js
 
+# Bundle size note
+
+You might be alarmed that this depends on `lodash`, but it only imports `lodash/get`, so with webpack or rollup tree shaking it will not weigh much.
+
 # Important
 
 **Important**: `react-final-form-graceful-field` requires you to use the [`setFieldData` mutator](https://github.com/final-form/final-form-set-field-data) on your form:
