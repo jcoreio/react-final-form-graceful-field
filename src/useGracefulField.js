@@ -7,7 +7,6 @@ import {
 } from 'final-form'
 import { useForm, type FieldRenderProps, useField } from 'react-final-form'
 import * as React from 'react'
-import get from 'lodash/get'
 
 export type UseGracefulFieldProps = {
   afterSubmit?: () => void,
@@ -66,6 +65,8 @@ export default function useGracefulField(
 ): FieldRenderProps {
   const form = useForm('useField')
 
+  const [lastFormValue, setLastFormValue] = React.useState()
+
   const field: FieldRenderProps = useField(name, {
     afterSubmit,
     allowNull,
@@ -74,12 +75,14 @@ export default function useGracefulField(
     component,
     data,
     defaultValue,
-    format: (value, name) =>
-      raw && (field.meta.active || raw.parseError)
+    format: (value: any, name: string): any => {
+      if (value !== lastFormValue) setLastFormValue(value)
+      return raw && (field.meta.active || raw.parseError)
         ? raw.rawValue
         : format
         ? format(value, name)
-        : value,
+        : value
+    },
     formatOnBlur: false,
     initialValue,
     isEqual,
@@ -116,20 +119,28 @@ export default function useGracefulField(
   })
 
   const raw = getRaw(field.meta)
-  const curValue = get(form.getState().values, name)
+
   React.useEffect(
     () => {
-      if (
-        !field.meta.active &&
-        raw &&
-        (!raw.parseError || !Object.is(raw.parsedValue, curValue))
-      ) {
+      if (field.meta.active) return
+      if (raw && !raw.parseError) {
         form.mutators.setFieldData(name, {
           'react-final-form-graceful-field': null,
         })
       }
     },
-    [field.meta.active, raw, curValue]
+    [field.meta.active]
   )
+
+  React.useEffect(
+    () => {
+      if (field.meta.active) return
+      form.mutators.setFieldData(name, {
+        'react-final-form-graceful-field': null,
+      })
+    },
+    [lastFormValue]
+  )
+
   return field
 }
