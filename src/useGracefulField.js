@@ -76,7 +76,9 @@ export default function useGracefulField(
     data,
     defaultValue,
     format: (value: any, name: string): any => {
-      if (value !== lastFormValue) setLastFormValue(value)
+      if (value !== lastFormValue) {
+        setTimeout(() => setLastFormValue(value), 0)
+      }
       return raw && (field.meta.active || raw.parseError)
         ? raw.rawValue
         : format
